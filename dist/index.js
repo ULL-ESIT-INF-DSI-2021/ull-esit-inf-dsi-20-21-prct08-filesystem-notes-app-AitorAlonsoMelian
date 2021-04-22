@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const chalk = require("chalk");
+const Nota_1 = require("./Nota");
 const yargs = require("yargs");
+const fs = require("fs");
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
@@ -14,9 +15,16 @@ yargs.command({
     },
     handler(argv) {
         if (typeof argv.title === 'string') {
-            console.log("A");
+            console.log(argv.title);
+            fs.writeFileSync("Nota.json", 'Prueba');
         }
     },
 });
+function findNote(object, title) {
+    return object.title == title;
+}
 yargs.parse();
-console.log(chalk.bgCyanBright("This text is made with Chalk"));
+let nota = new Nota_1.Nota();
+let x = nota.readNote("Titulo");
+x = JSON.parse(x);
+console.log(x["note"].find(findNote));
