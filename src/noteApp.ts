@@ -1,5 +1,6 @@
 import chalk = require('chalk')
 import * as fs from 'fs'
+import { dir } from 'node:console'
 export class noteApp {
     constructor(){
 
@@ -42,6 +43,25 @@ export class noteApp {
     
     listNotes(user: any){
         let dirPath: string = "Notas/" + user
+        let notesList = fs.readdirSync(dirPath)
+        notesList.forEach(element => {
+            let path = dirPath + "/" + element
+            let color: string = JSON.parse(fs.readFileSync(path, 'utf-8'))["color"]
+            switch(color) {
+                case "blue":
+                    console.log(chalk.blue(element))
+                    break
+                case "green":
+                    console.log(chalk.green(element))
+                    break
+                case "yellow":
+                    console.log(chalk.yellow(element))
+                    break
+                case "red":
+                    console.log(chalk.red(element))
+                    break
+            }
+        });
     }
 
     readNote(user: any, title: any){

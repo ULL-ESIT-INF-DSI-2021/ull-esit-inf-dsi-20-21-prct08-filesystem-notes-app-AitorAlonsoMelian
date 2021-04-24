@@ -75,6 +75,21 @@ yargs.command({
   }
 });
 
+yargs.command({
+  command: "list",
+  describe: "list notes",
+  builder: {
+    user: {
+      describe: "User who owns the notes you want to list",
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    note.listNotes(argv.user)
+  }
+});
+
 
 yargs.parse()
 
