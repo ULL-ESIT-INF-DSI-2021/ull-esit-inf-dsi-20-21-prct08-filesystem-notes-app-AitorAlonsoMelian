@@ -40,8 +40,8 @@ export class noteApp {
 
     }
     
-    listNotes(){
-
+    listNotes(user: any){
+        let dirPath: string = "Notas/" + user
     }
 
     readNote(user: any, title: any){
