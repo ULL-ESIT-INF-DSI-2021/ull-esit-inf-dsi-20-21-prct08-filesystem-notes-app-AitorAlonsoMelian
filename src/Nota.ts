@@ -28,7 +28,7 @@ export class Nota {
     }
 
     modifyNote(){
-
+        
     }
     
     listNotes(){
