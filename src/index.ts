@@ -90,6 +90,36 @@ yargs.command({
   }
 });
 
+yargs.command({
+  command: "modify",
+  describe: "modify notes",
+  builder: {
+    user: {
+      describe: "User who owns the notes you want to list",
+      demandOption: true,
+      type: 'string'
+    },
+    title: {
+      describe: "Note to modify",
+      demandOption: true,
+      type: 'string'
+    },
+    body: {
+      describe: "New body to set on your note.",
+      demandOption: true,
+      type: 'string'
+    },
+    color: {
+      describe: "New color to set on your note.",
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    note.modifyNote(argv.user, argv.title, argv.body, argv.color)
+  }
+});
+
 
 yargs.parse()
 

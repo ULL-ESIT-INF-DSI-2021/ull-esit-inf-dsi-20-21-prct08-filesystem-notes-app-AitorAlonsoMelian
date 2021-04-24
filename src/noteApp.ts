@@ -1,6 +1,7 @@
 import chalk = require('chalk')
 import * as fs from 'fs'
 import { dir } from 'node:console'
+
 export class noteApp {
     constructor(){
 
@@ -29,6 +30,8 @@ export class noteApp {
         let path: string = "Notas/" + user + "/" + title + ".json"
         if (fs.existsSync(path)) {
             fs.rmSync(path)
+
+
             console.log(chalk.bgGreen("El archivo ha sido borrado con éxito"))
             return 1
         }
@@ -37,8 +40,17 @@ export class noteApp {
         }
     }
 
-    modifyNote(){
-
+    modifyNote(user: any, title: any, body: any, color: any){
+        let path: string = "Notas/" + user + "/" + title + ".json"
+        let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
+        if (fs.existsSync(path)){
+            fs.writeFileSync(path,content)
+            console.log(chalk.bgGreen("El archivo ha sido modificado con éxito"))
+            return 1
+        }
+        else {
+            throw chalk.bgRed.white("El archivo que desea modificar no existe")
+        }
     }
     
     listNotes(user: any){
