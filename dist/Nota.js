@@ -21,7 +21,15 @@ class Nota {
             throw chalk.bgRed.white("El archivo que intenta añadir ya existe");
         }
     }
-    deleteNote() {
+    deleteNote(user, title) {
+        let path = "Notas/" + user + "/" + title + ".json";
+        if (fs.existsSync(path)) {
+            fs.rmSync(path);
+            console.log(chalk.bgGreen("El archivo ha sido borrado con éxito"));
+        }
+        else {
+            throw chalk.bgRed.white("El archivo que desea borrar no existe");
+        }
     }
     modifyNote() {
     }

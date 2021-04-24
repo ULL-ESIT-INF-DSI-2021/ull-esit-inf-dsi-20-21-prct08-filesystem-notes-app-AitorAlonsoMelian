@@ -1,11 +1,11 @@
 import chalk = require('chalk')
 import * as fs from 'fs'
-export class Nota {
+export class noteApp {
     constructor(){
 
     }
 
-    addNote(user: any, title: any, body: any, color: any){
+    addNote(user: any, title: any, body: any, color: any): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
 
@@ -16,6 +16,7 @@ export class Nota {
             }
             fs.writeFileSync(path,content)
             console.log(chalk.bgGreen("El archivo ha sido creado con éxito"))
+            return 1
         }
         else { // Si el archivo ya existe se da un mensaje de error
             throw chalk.bgRed.white("El archivo que intenta añadir ya existe")
@@ -23,12 +24,20 @@ export class Nota {
 
     }
 
-    deleteNote(){
-
+    deleteNote(user: any, title: any): number{
+        let path: string = "Notas/" + user + "/" + title + ".json"
+        if (fs.existsSync(path)) {
+            fs.rmSync(path)
+            console.log(chalk.bgGreen("El archivo ha sido borrado con éxito"))
+            return 1
+        }
+        else {
+            throw chalk.bgRed.white("El archivo que desea borrar no existe")
+        }
     }
 
     modifyNote(){
-        
+
     }
     
     listNotes(){

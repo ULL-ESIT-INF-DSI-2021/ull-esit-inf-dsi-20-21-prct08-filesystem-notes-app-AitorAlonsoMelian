@@ -1,9 +1,9 @@
-import {Nota} from './Nota'
+import {noteApp} from './noteApp'
 import * as chalk from 'chalk'
 import * as yargs from 'yargs';
 import * as fs from 'fs'
 
-let note = new Nota()
+let note = new noteApp()
 
 yargs.command({
   command: 'add',
@@ -53,7 +53,27 @@ yargs.command({
   handler(argv) {
     note.readNote(argv.user, argv.title)
   }
-})
+});
+
+yargs.command({
+  command: "delete",
+  describe: "Delete a note",
+  builder: {
+    title: {
+      describe: "Note to delete",
+      demandOption: true,
+      type: 'string'
+    },
+    user: {
+      describe: "User who owns the note you want to delete",
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    note.deleteNote(argv.user, argv.title)
+  }
+});
 
 
 yargs.parse()

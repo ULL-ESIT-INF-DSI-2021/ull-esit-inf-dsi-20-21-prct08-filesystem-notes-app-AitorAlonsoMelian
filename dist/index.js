@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Nota_1 = require("./Nota");
+const noteApp_1 = require("./noteApp");
 const yargs = require("yargs");
-let note = new Nota_1.Nota();
+let note = new noteApp_1.noteApp();
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
@@ -49,6 +49,25 @@ yargs.command({
     },
     handler(argv) {
         note.readNote(argv.user, argv.title);
+    }
+});
+yargs.command({
+    command: "delete",
+    describe: "Delete a note",
+    builder: {
+        title: {
+            describe: "Note to delete",
+            demandOption: true,
+            type: 'string'
+        },
+        user: {
+            describe: "User who owns the note you want to delete",
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        note.deleteNote(argv.user, argv.title);
     }
 });
 yargs.parse();
