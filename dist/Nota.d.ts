@@ -4,5 +4,5 @@ export declare class Nota {
     deleteNote(): void;
     modifyNote(): void;
     listNotes(): void;
-    readNote(title: any): string;
+    readNote(user: any, title: any): void;
 }
