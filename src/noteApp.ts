@@ -28,10 +28,13 @@ export class noteApp {
 
     deleteNote(user: any, title: any): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
+        let dirPath: string = "Notas/" + user
         if (fs.existsSync(path)) {
             fs.rmSync(path)
-
-
+            let notesList = fs.readdirSync(dirPath)
+            if (notesList.length == 0) {
+                fs.rmdirSync(dirPath)
+            }
             console.log(chalk.bgGreen("El archivo ha sido borrado con éxito"))
             return 1
         }
@@ -74,6 +77,7 @@ export class noteApp {
                     break
             }
         });
+        return 1
     }
 
     readNote(user: any, title: any){
@@ -98,6 +102,7 @@ export class noteApp {
                 console.log(chalk.yellow(body))
                 break
         }
+        return 1
     }
 
     
