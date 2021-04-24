@@ -17,17 +17,17 @@ yargs.command({
     user: {
       describe: 'User who writes the note',
       demandOption: true,
-      type: 'string'
+      type: 'string',
     },
     body: {
       describe: 'Note Body',
       demandOption: true,
-      type: 'string'
+      type: 'string',
     },
     color: {
       describe: 'Note Color',
       demandOption: true,
-      type: 'string'
+      type: 'string',
     }
   },
   handler(argv) {
@@ -58,12 +58,3 @@ yargs.command({
 
 yargs.parse()
 
-
-
-/*function findNote(object, title){
-  return object.title == title
-}
-let nota = new Nota()
-let x = nota.readNote("Titulo")
-x = JSON.parse(x)
-console.log(x["note"].find(findNote))*/

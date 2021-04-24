@@ -5,16 +5,22 @@ export class Nota {
 
     }
 
-    addNote(user, title, body, color){
+    addNote(user: any, title: any, body: any, color: any){
         let path: string = "Notas/" + user + "/" + title + ".json"
-        //console.log(path)
         let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
-        //console.log(JSON.parse(content))
-        try {
-            fs.mkdirSync("Notas/" + user)
+
+        let dirPath: string = "Notas/" + user
+        if (!fs.existsSync(path)) { // Primero se comprueba que NO exista el archivo
+            if (!fs.existsSync(dirPath)) { // Si no existe el directorio del usuario, se crea.
+                fs.mkdirSync("Notas/" + user)
+            }
+            fs.writeFileSync(path,content)
+            console.log(chalk.bgGreen("El archivo ha sido creado con éxito"))
         }
-        catch{}
-        fs.writeFileSync(path,content)
+        else { // Si el archivo ya existe se da un mensaje de error
+            throw chalk.bgRed.white("El archivo que intenta añadir ya existe")
+        }
+
     }
 
     deleteNote(){
@@ -29,7 +35,7 @@ export class Nota {
 
     }
 
-    readNote(user, title){
+    readNote(user: any, title: any){
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = fs.readFileSync(path,'utf-8')
         content = JSON.parse(content)
