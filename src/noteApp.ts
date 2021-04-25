@@ -31,7 +31,7 @@ export class noteApp {
             return 1
         }
         else { // Si el archivo ya existe se da un mensaje de error
-            throw chalk.bgRed.white("El archivo que intenta añadir ya existe")
+            throw new Error(chalk.bgRed.white("El archivo que intenta añadir ya existe"))
         }
 
     }
@@ -55,7 +55,7 @@ export class noteApp {
             return 1
         }
         else {
-            throw chalk.bgRed.white("El archivo que desea borrar no existe")
+            throw new Error(chalk.bgRed.white("El archivo que desea borrar no existe"))
         }
     }
 
@@ -76,7 +76,7 @@ export class noteApp {
             return 1
         }
         else {
-            throw chalk.bgRed.white("El archivo que desea modificar no existe")
+            throw new Error(chalk.bgRed.white("El archivo que desea modificar no existe"))
         }
     }
     
