@@ -29,6 +29,18 @@ Los parámetros que se usan en el programa son:
 - color: Color de la nota
 
 No todos los comandos necesitan de todos los parámetros, ya que, por ejemplo, para listar todas las notas del usuario, solo necesitas el nombre del usuario, en cambio para añadir una nota, necesitas todos los parámetros anteriormente mencionados.
+Todos los comandos realizados están basados en el ejemplo del que se dispone en el guión de la práctica, ya que todos son comandos sencillos.
+
+La única funcionalidad que tiene este fichero, aparte de gestionar los parámetros, es crear un objeto `noteApp` que contendrá todos los métodos necesarios para la gestión de ficheros de las notas. Cada comando, en su método `handler` llama a su método correspondiente de la clase `noteApp` pasandole los parámetros que necesita.
 
 ### [Gestión de ficheros/notas (noteApp.ts)](./src/noteApp.ts)
 
+Para la gestión de ficheros/notas he decidido crear la clase `noteApp` que contiene todos los métodos necesarios para esto. La clase no tiene atributos, simplemente son los métodos los que implementan la funcionalidad. Los métodos de los que dispone la clase son:
+- addNote(user, title, body, color)
+- deleteNote(user, title)
+- modifyNote(user, title, body, color)
+- listNotes(user)
+- readNotes(user, title)
+
+El método `addNote` recibe todos los parámetros, ya que los necesita todos. Lo primero que hago es construir la variable `path` y la variable `content`. La variable path la construyo concatenando los strings necesarios, con user y title, de manera que al final quede, por ejemplo un path de la siguiente manera: `Notas/Usuario/Titulo.json`. Este path, junto con el contenido es necesario para pasárselo como argumento a la función `fs.writeFileSync(path, content)`, que creará el fichero en `path`, con el contenido que haya en `content`. 
+En cuanto a la variable `content`
