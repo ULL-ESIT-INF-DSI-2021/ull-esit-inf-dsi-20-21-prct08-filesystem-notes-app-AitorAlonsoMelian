@@ -18,7 +18,7 @@ export class noteApp {
      * @param color Color de la nota
      * @returns Retorna 1 si la creación de la nota ha sido exitosa
      */
-    addNote(user: any, title: any, body: any, color: any): number{
+    addNote(user: string, title: string, body: string, color: string): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
 
@@ -43,7 +43,7 @@ export class noteApp {
      * @param title Titulo de la nota a borrar
      * @returns Retorna 1 si la nota se ha borrado correctamente.
      */
-    deleteNote(user: any, title: any): number{
+    deleteNote(user: string, title: string): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
         let dirPath: string = "Notas/" + user
         if (fs.existsSync(path)) {
@@ -68,7 +68,7 @@ export class noteApp {
      * @param color Color de la nota
      * @returns Retorna 1 si se ha modificado correctamente la nota.
      */
-    modifyNote(user: any, title: any, body: any, color: any){
+    modifyNote(user: string, title: string, body: string, color: string){
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
         if (fs.existsSync(path)){
@@ -86,7 +86,7 @@ export class noteApp {
      * @param user Usuario del que se listan las notas
      * @returns Retorna 1 si se listan correctamente
      */
-    listNotes(user: any){
+    listNotes(user: string){
         let dirPath: string = "Notas/" + user
         let notesList = fs.readdirSync(dirPath)
         notesList.forEach(element => {
@@ -116,7 +116,7 @@ export class noteApp {
      * @param title Titulo de la nota
      * @returns Retorna 1 si se puede leer la nota correctamente
      */
-    readNote(user: any, title: any){
+    readNote(user: string, title: string){
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = fs.readFileSync(path,'utf-8')
         content = JSON.parse(content)

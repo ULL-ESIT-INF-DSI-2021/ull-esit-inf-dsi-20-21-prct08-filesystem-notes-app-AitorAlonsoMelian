@@ -32,7 +32,9 @@ yargs.command({
     }
   },
   handler(argv) {
-    note.addNote(argv.user, argv.title, argv.body, argv.color)
+    if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
+      note.addNote(argv.user, argv.title, argv.body, argv.color)
+    }
   },
 });
 
@@ -52,7 +54,9 @@ yargs.command({
     }
   },
   handler(argv) {
-    note.readNote(argv.user, argv.title)
+    if (typeof argv.user === 'string' && typeof argv.title === 'string') {
+      note.readNote(argv.user, argv.title)
+    }
   }
 });
 
@@ -72,7 +76,9 @@ yargs.command({
     }
   },
   handler(argv) {
-    note.deleteNote(argv.user, argv.title)
+    if (typeof argv.user === 'string' && typeof argv.title === 'string') {
+      note.deleteNote(argv.user, argv.title)
+    }
   }
 });
 
@@ -87,7 +93,9 @@ yargs.command({
     }
   },
   handler(argv) {
-    note.listNotes(argv.user)
+    if (typeof argv.user === 'string') {
+      note.listNotes(argv.user)
+    }
   }
 });
 
@@ -117,7 +125,9 @@ yargs.command({
     }
   },
   handler(argv) {
-    note.modifyNote(argv.user, argv.title, argv.body, argv.color)
+    if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
+      note.modifyNote(argv.user, argv.title, argv.body, argv.color)
+    }
   }
 });
 
