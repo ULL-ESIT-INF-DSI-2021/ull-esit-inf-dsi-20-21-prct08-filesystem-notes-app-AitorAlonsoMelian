@@ -19,14 +19,14 @@ export class noteApp {
      */
     addNote(user: string, title: string, body: string, color: string): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
-        let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
+        let content: object = { "body": body, "color": color }
 
         let dirPath: string = "Notas/" + user
         if (!fs.existsSync(path)) { // Primero se comprueba que NO exista el archivo
             if (!fs.existsSync(dirPath)) { // Si no existe el directorio del usuario, se crea.
                 fs.mkdirSync("Notas/" + user)
             }
-            fs.writeFileSync(path,content)
+            fs.writeFileSync(path,JSON.stringify(content))
             console.log(chalk.bgGreen("El archivo ha sido creado con éxito"))
             return 1
         }
@@ -69,9 +69,9 @@ export class noteApp {
      */
     modifyNote(user: string, title: string, body: string, color: string){
         let path: string = "Notas/" + user + "/" + title + ".json"
-        let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
+        let content: object = { "body": body, "color": color }
         if (fs.existsSync(path)){
-            fs.writeFileSync(path,content)
+            fs.writeFileSync(path,JSON.stringify(content))
             console.log(chalk.bgGreen("El archivo ha sido modificado con éxito"))
             return 1
         }
