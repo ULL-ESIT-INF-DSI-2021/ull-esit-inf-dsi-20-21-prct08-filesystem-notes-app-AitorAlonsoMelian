@@ -58,7 +58,62 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><a href="https://github.com/AitorAlonsoMelian/Typescript-Template/actions/workflows/node.js.yml"><img src="https://github.com/AitorAlonsoMelian/Typescript-Template/actions/workflows/node.js.yml/badge.svg" alt="Tests"></a></p>
+				<p><a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian/actions/workflows/node.js.yml"><img src="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian/actions/workflows/node.js.yml/badge.svg" alt="Tests"></a>
+					<a href="https://sonarcloud.io/dashboard?id=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian"><img src="https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2021_ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian&metric=alert_status" alt="Quality Gate Status"></a>
+				<a href="https://coveralls.io/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian?branch=master"><img src="https://coveralls.io/repos/github/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian/badge.svg?branch=master" alt="Coverage Status"></a></p>
+				<a href="#práctica-8---aplicación-de-procesamiento-de-notas-de-texto" id="práctica-8---aplicación-de-procesamiento-de-notas-de-texto" style="color: inherit; text-decoration: none;">
+					<h1>Práctica 8 - Aplicación de procesamiento de notas de texto</h1>
+				</a>
+				<a href="#datos" id="datos" style="color: inherit; text-decoration: none;">
+					<h2>Datos</h2>
+				</a>
+				<ul>
+					<li><strong>Autor:</strong> Aitor Alonso Melián</li>
+					<li><strong>Contacto:</strong> alu0101122496@ull.edu.es</li>
+					<li><strong>Universidad:</strong> Universidad de La Laguna</li>
+					<li><strong>Asignatura:</strong> Desarrollo de Sistemas informáticos</li>
+				</ul>
+				<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
+					<h2>Introducción</h2>
+				</a>
+				<p>En esta práctica se implementará una aplicación de procesamiento de notas de texto. Se podrán añadir, modificar, eliminar, listar y leer notas de texto. Las notas se almacenarán como ficheros JSON en en el sistema de ficheros de la máquina que se ejecute, y solo se podrá interactuar con la aplicación desde la línea de comandos. El código fuente está disponible en el <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian">repositorio</a> y el informe en la <a href="https://ull-esit-inf-dsi-2021.github.io/ull-esit-inf-dsi-20-21-prct08-filesystem-notes-app-AitorAlonsoMelian/">Github Page</a></p>
+				<a href="#desarrollo" id="desarrollo" style="color: inherit; text-decoration: none;">
+					<h2>Desarrollo</h2>
+				</a>
+				<a href="#gestión-de-parámetros-indexts" id="gestión-de-parámetros-indexts" style="color: inherit; text-decoration: none;">
+					<h3><a href="./src/index.ts">Gestión de parámetros (index.ts)</a></h3>
+				</a>
+				<p>Para la gestión de parámetros utilizo la librería yargs en el fichero index.ts. En este fichero se declaran cada uno de los comandos necesarios para la utilización de los ficheros de manera interactiva. Estos comandos son: </p>
+				<ul>
+					<li>add: Añade una nota</li>
+					<li>read: Lee una nota</li>
+					<li>delete: Borra una nota</li>
+					<li>list: Lista las notas de un usuario</li>
+					<li>modify: Modifica una nota</li>
+				</ul>
+				<p>Los parámetros que se usan en el programa son: </p>
+				<ul>
+					<li>user: Usuario</li>
+					<li>title: Título de la nota</li>
+					<li>body: Contenido de la nota</li>
+					<li>color: Color de la nota</li>
+				</ul>
+				<p>No todos los comandos necesitan de todos los parámetros, ya que, por ejemplo, para listar todas las notas del usuario, solo necesitas el nombre del usuario, en cambio para añadir una nota, necesitas todos los parámetros anteriormente mencionados.
+				Todos los comandos realizados están basados en el ejemplo del que se dispone en el guión de la práctica, ya que todos son comandos sencillos.</p>
+				<p>La única funcionalidad que tiene este fichero, aparte de gestionar los parámetros, es crear un objeto <code>noteApp</code> que contendrá todos los métodos necesarios para la gestión de ficheros de las notas. Cada comando, en su método <code>handler</code> llama a su método correspondiente de la clase <code>noteApp</code> pasandole los parámetros que necesita.</p>
+				<a href="#gestión-de-ficherosnotas-noteappts" id="gestión-de-ficherosnotas-noteappts" style="color: inherit; text-decoration: none;">
+					<h3><a href="./src/noteApp.ts">Gestión de ficheros/notas (noteApp.ts)</a></h3>
+				</a>
+				<p>Para la gestión de ficheros/notas he decidido crear la clase <code>noteApp</code> que contiene todos los métodos necesarios para esto. La clase no tiene atributos, simplemente son los métodos los que implementan la funcionalidad. Los métodos de los que dispone la clase son:</p>
+				<ul>
+					<li>addNote(user, title, body, color)</li>
+					<li>deleteNote(user, title)</li>
+					<li>modifyNote(user, title, body, color)</li>
+					<li>listNotes(user)</li>
+					<li>readNotes(user, title)</li>
+				</ul>
+				<p>El método <code>addNote</code> recibe todos los parámetros, ya que los necesita todos. Lo primero que hago es construir la variable <code>path</code> y la variable <code>content</code>. La variable path la construyo concatenando los strings necesarios, con user y title, de manera que al final quede, por ejemplo un path de la siguiente manera: <code>Notas/Usuario/Titulo.json</code>. Este path, junto con el contenido es necesario para pasárselo como argumento a la función <code>fs.writeFileSync(path, content)</code>, que creará el fichero en <code>path</code>, con el contenido que haya en <code>content</code>.
+				En cuanto a la variable <code>content</code></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
