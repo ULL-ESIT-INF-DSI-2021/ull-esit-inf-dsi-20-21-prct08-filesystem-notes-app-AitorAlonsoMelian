@@ -2,11 +2,22 @@ import chalk = require('chalk')
 import * as fs from 'fs'
 import { dir } from 'node:console'
 
+/**
+ * Clase que contiene los métodos necesarios para crear, borrar, modificar y leer las notas.
+ */
 export class noteApp {
     constructor(){
 
     }
-
+    
+    /**
+     * Método que crea una nueva nota basada en los parámetros que se le pasan.
+     * @param user Usuario que va a añadir la nota
+     * @param title Titulo de la nota
+     * @param body Contenido de la nota
+     * @param color Color de la nota
+     * @returns Retorna 1 si la creación de la nota ha sido exitosa
+     */
     addNote(user: any, title: any, body: any, color: any): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
@@ -26,6 +37,12 @@ export class noteApp {
 
     }
 
+    /**
+     * Método que borra una nota del usuario y título que se le haya pasado por parámetro.
+     * @param user Usuario del que se quiere borrar la nota
+     * @param title Titulo de la nota a borrar
+     * @returns Retorna 1 si la nota se ha borrado correctamente.
+     */
     deleteNote(user: any, title: any): number{
         let path: string = "Notas/" + user + "/" + title + ".json"
         let dirPath: string = "Notas/" + user
@@ -43,6 +60,14 @@ export class noteApp {
         }
     }
 
+    /**
+     * Método que modifica una nota del usuario user y de titulo title, sustituyendolo por el nuevo contenido que esté en body.
+     * @param user Usuario que va a modificar la nota
+     * @param title Titulo de la nota
+     * @param body Contenido de la nota
+     * @param color Color de la nota
+     * @returns Retorna 1 si se ha modificado correctamente la nota.
+     */
     modifyNote(user: any, title: any, body: any, color: any){
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = '{\n\t"body": "' + body + '",\n\t"color":  "' + color + '"\n}'
@@ -56,6 +81,11 @@ export class noteApp {
         }
     }
     
+    /**
+     * Método que lista todas las notas del usuario user
+     * @param user Usuario del que se listan las notas
+     * @returns Retorna 1 si se listan correctamente
+     */
     listNotes(user: any){
         let dirPath: string = "Notas/" + user
         let notesList = fs.readdirSync(dirPath)
@@ -80,6 +110,12 @@ export class noteApp {
         return 1
     }
 
+    /**
+     * Método que imprime por pantalla la nota title del usuario user.
+     * @param user Usuario de que se lee la nota
+     * @param title Titulo de la nota
+     * @returns Retorna 1 si se puede leer la nota correctamente
+     */
     readNote(user: any, title: any){
         let path: string = "Notas/" + user + "/" + title + ".json"
         let content: string = fs.readFileSync(path,'utf-8')

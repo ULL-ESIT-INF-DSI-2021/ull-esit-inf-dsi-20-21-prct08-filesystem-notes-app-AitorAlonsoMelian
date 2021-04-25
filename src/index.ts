@@ -1,10 +1,11 @@
 import {noteApp} from './noteApp'
-import * as chalk from 'chalk'
 import * as yargs from 'yargs';
-import * as fs from 'fs'
 
 let note = new noteApp()
 
+/**
+ * Este fichero se encarga de gestionar los parámetros que se pasan por línea de comando, y de llamar a los métodos necesarios.
+ */
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
