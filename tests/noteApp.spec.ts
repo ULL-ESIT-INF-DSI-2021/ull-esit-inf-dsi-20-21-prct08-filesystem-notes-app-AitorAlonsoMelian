@@ -26,7 +26,7 @@ describe('Note class', () => {
     })
 
     it('Se puede modificar una nota', () => {
-      expect(note.modifyNote("TestUser","Test", "A esta nota le queda muy poco tiempo de vida :(", "blue")).to.equal(1)
+      expect(note.modifyNote("TestUser","Test", "A esta nota le queda muy poco tiempo de vida :(", "yellow")).to.equal(1)
     });
 
     it('Se puede controlar una excepción al intentar modificar una nota no existente', () => {
