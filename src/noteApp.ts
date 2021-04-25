@@ -1,6 +1,5 @@
 import chalk = require('chalk')
 import * as fs from 'fs'
-import { dir } from 'node:console'
 
 /**
  * Clase que contiene los métodos necesarios para crear, borrar, modificar y leer las notas.
